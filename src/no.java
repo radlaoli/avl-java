@@ -8,7 +8,7 @@ public class no<T extends Comparable<T>>{
         this.valor = valor;
     }
 
-    private static <T extends Comparable<T>> int altura(no<T> n) {
+    public static <T extends Comparable<T>> int altura(no<T> n) {
         return (n == null) ? -1 : n.altura;
     }
 
@@ -20,4 +20,13 @@ public class no<T extends Comparable<T>>{
     public int fatorBalanceamento(){
         return altura(esquerdo) - altura(direito);
     }
+
+    public T getValor() {return valor;}
+    public void setValor(T valor) {this.valor = valor;}
+
+    public no<T> getDireito() {return direito;}
+    public void setDireito(no<T> direito) {this.direito = direito;}
+
+    public no<T> getEsquerdo() {return esquerdo;}
+    public void setEsquerdo(no<T> esquerdo) {this.esquerdo = esquerdo;}
 }
