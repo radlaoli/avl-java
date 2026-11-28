@@ -7,8 +7,10 @@ public class ArvoreAVL <T extends Comparable <T>> {
         this.tamanho = 0;
     }
 
-    public void inserir(T valor) {
+    public boolean inserir(T valor) {
+        int tamanhoAntes = tamanho;
         raiz = inserir(raiz, valor);
+        return tamanho > tamanhoAntes;
     }
 
     private No<T> inserir(No <T> noAtual,T valor){
@@ -24,7 +26,6 @@ public class ArvoreAVL <T extends Comparable <T>> {
         } else if (comparacao > 0) {
             noAtual.setDireito(inserir(noAtual.getDireito(), valor));
         } else{
-            System.out.println("Já existe um nó com valor" + valor);
             return noAtual;
         }
 
