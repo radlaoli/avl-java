@@ -32,4 +32,18 @@ public class ArvoreAVL <T extends Comparable <T>> {
         //balancear
         return noAtual;
     }
-}
+    
+
+    public void exibir(){
+      emOrdem(raiz);
+    }
+
+   private void emOrdem(No <T> noAtual){
+      if(noAtual != null){
+        emOrdem(noAtual.getEsquerdo());
+        System.out.println(noAtual.getValor());
+        emOrdem(noAtual.getDireito());
+      }
+    }
+
+  }
