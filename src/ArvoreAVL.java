@@ -30,10 +30,56 @@ public class ArvoreAVL <T extends Comparable <T>> {
         }
 
         noAtual.atualizarAltura();
-        //balancear
-        return noAtual;
+        return balancear(noAtual);
     }
+
+    private No<T> rotacaoDireita(No<T> y) {
+        No<T> x = y.getEsquerdo();
+        No<T> b = x.getDireito();
+
+        x.setDireito(y);
+        y.setEsquerdo(b);
+
+        y.atualizarAltura();
+        x.atualizarAltura();
+
+        return x;
+    }
+
+    private No<T> rotacaoEsquerda(No<T> y){
+      No<T> x = y.getDireito();
+      No<T> b = x.getEsquerdo();
+
+      x.setEsquerdo(y);
+      y.setDireito(b);
+
+      y.atualizarAltura();
+      x.atualizarAltura();
+
+      return x;
+    }
+
     
+    private No<T> balancear(No<T> no){
+      int fb = no.fatorBalanceamento();
+
+      if (fb > 1) {
+        if (no.getEsquerdo().fatorBalanceamento() < 0) {
+          no.setEsquerdo(rotacaoEsquerda(no.getEsquerdo()));
+        }
+        return rotacaoDireita(no);
+      }
+      else if (fb < -1) {
+        if (no.getDireito().fatorBalanceamento() > 0) {
+          no.setDireito(rotacaoDireita(no.getDireito()));
+        }
+        return rotacaoEsquerda(no);
+      }
+      else {
+        return no;
+      }
+    }
+
 
     public void exibir(){
       emOrdem(raiz);
