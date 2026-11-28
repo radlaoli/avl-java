@@ -114,4 +114,46 @@ public class ArvoreAVL <T extends Comparable <T>> {
         return ehNo(noAtual.getDireito(),valor);
       }
     }
+
+    public boolean remover(T valor) {
+      int tamanhoAntes = tamanho;
+      raiz = remover(raiz, valor);
+      return tamanho < tamanhoAntes;
+    }
+
+    private No<T> remover(No<T> noAtual, T valor) {
+      if (noAtual == null) {
+        return null;
+      }
+
+      int comparacao = valor.compareTo(noAtual.getValor());
+      if (comparacao < 0) {
+        noAtual.setEsquerdo(remover(noAtual.getEsquerdo(), valor));
+      } else if (comparacao > 0) {
+        noAtual.setDireito(remover(noAtual.getDireito(), valor));
+      } else {
+        if (noAtual.getEsquerdo() == null || noAtual.getDireito() == null) {
+          tamanho--;
+          noAtual = (noAtual.getEsquerdo() != null) ? noAtual.getEsquerdo() : noAtual.getDireito();
+        } else {
+          No<T> sucessor = menorNo(noAtual.getDireito());
+          noAtual.setValor(sucessor.getValor());
+          noAtual.setDireito(remover(noAtual.getDireito(), sucessor.getValor()));
+        }
+      }
+
+      if (noAtual == null) {
+        return null;
+      }
+
+      noAtual.atualizarAltura();
+      return balancear(noAtual);
+    }
+
+    private No<T> menorNo(No<T> no) {
+      if (no.getEsquerdo() == null) {
+        return no;
+      }
+      return menorNo(no.getEsquerdo());
+    }
   }

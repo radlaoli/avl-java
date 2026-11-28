@@ -19,11 +19,18 @@ public class Main {
                     : "O valor " + b + " não existe na árvore";
             System.out.println(mensagem);
         }
+        
+        System.out.println("Inserindo 100");
       
-    arvore.inserir(100);
-    arvore.exibir();
+        arvore.inserir(100);
+        arvore.exibir();
 
-    arvore.inserir(110);
-    arvore.exibir();
+        System.out.println("Inserindo 110");
+        arvore.inserir(110);
+        arvore.exibir();
+
+        System.out.println("Removendo 50");
+        arvore.remover(50);
+        arvore.exibir();
     }
 }
