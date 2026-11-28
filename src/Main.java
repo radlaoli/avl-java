@@ -9,5 +9,13 @@ public class Main {
 
         System.out.println("Percurso em ordem:");
         arvore.exibir();
+
+        int[] buscas = {40, 99};
+        for (int b : buscas) {
+            String mensagem = arvore.pesquisar(b)
+                    ? "O valor " + b + " existe na árvore"
+                    : "O valor " + b + " não existe na árvore";
+            System.out.println(mensagem);
+        }
     }
 }

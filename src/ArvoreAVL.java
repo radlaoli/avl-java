@@ -45,5 +45,26 @@ public class ArvoreAVL <T extends Comparable <T>> {
         emOrdem(noAtual.getDireito());
       }
     }
+  
+    public boolean pesquisar(T valor){
+      return ehNo(raiz, valor);
+    }
 
+    private boolean ehNo(No <T> noAtual, T valor){
+      if (noAtual == null) {
+        return false;
+      }
+    
+
+      int comparacao = valor.compareTo(noAtual.getValor());
+      if (comparacao == 0) {
+        return true;
+      }
+      else if(comparacao < 0){
+        return ehNo(noAtual.getEsquerdo(), valor); 
+      }
+      else{
+        return ehNo(noAtual.getDireito(),valor);
+      }
+    }
   }
